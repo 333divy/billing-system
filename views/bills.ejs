@@ -6,14 +6,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bills</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="/path/to/style.css">
 </head>
 <body>
-  <h1>Bills</h1>
+  <h1>Bills Page</h1>
   <ul>
     <% bills.forEach(bill => { %>
       <li>
-        <strong>Client:</strong> <%= bill.client.name %> |
+        <strong>Client:</strong>
+        <% if (bill.client && bill.client.name) { %>
+          <%= bill.client.name %> |
+        <% } else { %>
+          N/A |
+        <% } %>
         <strong>Total Amount:</strong> <%= bill.totalAmount %><br>
         <strong>Items:</strong>
         <ul>
@@ -24,7 +29,7 @@
       </li>
     <% }); %>
   </ul>
-  
+
   <form id="billForm" action="/bills" method="post">
     <label for="clientId">Client:</label>
     <select id="clientId" name="clientId" required>
@@ -46,14 +51,20 @@
     <button type="button" id="addItemButton">Add Item</button>
     <button type="submit" id="generateBillButton">Generate Bill</button>
   </form>
-  
+
   <button type="button" id="downloadPdfButton">Download as PDF</button>
   <a href="/">Go back</a>
 
   <div id="billContainer">
     <% bills.forEach(bill => { %>
       <div>
-        <h2>Bill for <%= bill.client.name %></h2>
+        <h2>Bill for 
+          <% if (bill.client && bill.client.name) { %>
+            <%= bill.client.name %>
+          <% } else { %>
+            N/A
+          <% } %>
+        </h2>
         <p><strong>Total Amount:</strong> <%= bill.totalAmount %></p>
         <ul>
           <% bill.items.forEach(item => { %>
