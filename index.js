@@ -78,6 +78,43 @@ app.post('/bills', (req, res) => {
   res.redirect('/bills');
 });
 
+// server.js
+
+// ... (previous code)
+
+const pdf = require('html-pdf');
+
+// Bills
+// ... (previous code)
+
+// PDF Download
+app.post('/download-pdf', (req, res) => {
+  const { pdfContent } = req.body;
+
+  if (!pdfContent) {
+    return res.status(400).send('Invalid request');
+  }
+
+  // Generate PDF
+  pdf.create(pdfContent).toStream((err, stream) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error generating PDF');
+    }
+
+    // Set response headers for PDF download
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=bill.pdf');
+
+    // Pipe the PDF stream to the response
+    stream.pipe(res);
+  });
+});
+
+// Start the server
+// ... (previous code)
+
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
