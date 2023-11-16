@@ -19,7 +19,7 @@ const bills = [];
 const employees = [];
 
 // Routes
-app.use(express.static(path.join(views, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Home route
 app.get('/', (req, res) => {
