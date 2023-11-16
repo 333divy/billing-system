@@ -18,6 +18,7 @@ const bills = [];
 const employees = [];
 
 // Routes
+app.use(express.static(path.join(views, 'public')));
 
 // Home route
 app.get('/', (req, res) => {
@@ -28,6 +29,7 @@ app.get('/', (req, res) => {
 app.get('/style.css', (req, res) => {
   //res.render('vendors', { vendors });
   //if(req.url ==='/style.css'){
+ 
         fs.readFile('views/style.css','utf8',function(err,data){
             //console.log("reading data");
         res.writeHead(200, {'Content-Type': 'text/css'});
