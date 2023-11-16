@@ -16,4 +16,7 @@
         "url": "https://github.com/333divy/billing-system/issues"
     },
     "homepage": "https://github.com/333divy/billing-system#readme"
+    "dependencies":{
+        "express":""
+    }
 }
