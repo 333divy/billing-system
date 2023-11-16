@@ -23,6 +23,23 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+// style.css route
+app.get('/style.css', (req, res) => {
+  //res.render('vendors', { vendors });
+  //if(req.url ==='/style.css'){
+        fs.readFile('views/style.css','utf8',function(err,data){
+            //console.log("reading data");
+        res.writeHead(200, {'Content-Type': 'text/css'});
+            res.write(data);
+        //data1 = data;
+            //console.log(data);
+            //console.log(req);
+            //console.log("error: " + err);
+            return res.end();
+        });
+    //}
+});
+
 // Vendor route
 app.get('/vendors', (req, res) => {
   res.render('vendors', { vendors });
