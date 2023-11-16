@@ -20,6 +20,7 @@
         "express":"",
         "body-parser":"",
         "ejs":"",
-        "html-pdf":""
+        "html-pdf":"",
+        "fs":""
     }
 }
