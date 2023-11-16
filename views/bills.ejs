@@ -52,7 +52,7 @@
     <button type="submit" id="generateBillButton">Generate Bill</button>
   </form>
 
-  <button type="button" id="downloadPdfButton">Download as PDF</button>
+  <button type="button" id="downloadPdfButton" action="/download-pdf">Download as PDF</button>
   <a href="/">Go back</a>
 
   <div id="billContainer">
@@ -75,8 +75,8 @@
     <% }); %>
   </div>
 
-  <form id="downloadPdfForm" action="/download-pdf" method="post" style="display: none;">
-    <input type="hidden" id="pdfContent" name="pdfContent">
+  <form id="downloadPdfForm" action="/download-pdf" method="post" >
+    <input  id="pdfContent" name="pdfContent">
   </form>
 
   <!--script src="bills.js"></script-->
