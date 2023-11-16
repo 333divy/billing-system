@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendors</title>
+</head>
+<body>
+  <h1>Vendors</h1>
+  <ul>
+    <% vendors.forEach(vendor => { %>
+      <li><%= vendor.name %> - <%= vendor.address %> - <%= vendor.contact %></li>
+    <% }); %>
+  </ul>
+  <form action="/vendors" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required>
+    <label for="contact">Contact:</label>
+    <input type="text" id="contact" name="contact" required>
+    <button type="submit">Add Vendor</button>
+  </form>
+  <a href="/">Go back</a>
+</body>
+</html>
