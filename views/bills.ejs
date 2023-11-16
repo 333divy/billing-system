@@ -75,10 +75,42 @@
     <% }); %>
   </div>
 
-  <form id="downloadPdfForm" action="/download-pdf" method="post" >
-    <input  id="pdfContent" name="pdfContent">
+  <form id="downloadPdfForm" action="/download-pdf" method="post" style="display:none">
+    <input type="hidden" id="pdfContent" name="pdfContent">
   </form>
 
   <!--script src="bills.js"></script-->
+<script>
+// bills.js
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Function to add a new item row when clicking the "Add Item" button
+  const addItemButton = document.getElementById('addItemButton');
+  addItemButton.addEventListener('click', function () {
+    const itemsList = document.getElementById('itemsList');
+    const newItemRow = document.createElement('li');
+    newItemRow.innerHTML = `
+      <select name="items[${itemsList.children.length}][itemName]" required>
+        ${inventoryOptions()}
+      </select>
+      <input type="number" name="items[${itemsList.children.length}][quantity]" placeholder="Quantity" required>
+    `;
+    itemsList.appendChild(newItemRow);
+  });
+
+  // Function to generate a PDF when clicking the "Download as PDF" button
+  const downloadPdfButton = document.getElementById('downloadPdfButton');
+  downloadPdfButton.addEventListener('click', function () {
+    const pdfContent = document.getElementById('billContainer').innerHTML;
+    document.getElementById('pdfContent').value = pdfContent;
+    document.getElementById('downloadPdfForm').submit();
+  });
+
+  // Helper function to generate options for the inventory dropdown
+  function inventoryOptions() {
+    return inventory.map(item => `<option value="${item.itemName}">${item.itemName}</option>`).join('');
+  }
+});
+</script>
 </body>
 </html>
