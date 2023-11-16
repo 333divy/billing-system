@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bills</title>
+</head>
+<body>
+  <h1>Bills</h1>
+  <ul>
+    <% bills.forEach(bill => { %>
+      <li>
+        <strong>Client:</strong> <%= bill.client.name %> |
+        <strong>Total Amount:</strong> <%= bill.totalAmount %><br>
+        <strong>Items:</strong>
+        <ul>
+          <% bill.items.forEach(item => { %>
+            <li><%= item.itemName %> - <%= item.quantity %> - <%= item.price %></li>
+          <% }); %>
+        </ul>
+      </li>
+    <% }); %>
+  </ul>
+  <form action="/bills" method="post">
+    <label for="clientId">Client:</label>
+    <select id="clientId" name="clientId" required>
+      <% clients.forEach(client => { %>
+        <option value="<%= client.name %>"><%= client.name %></option>
+      <% }); %>
+    </select>
+    <label for="items">Items:</label>
+    <ul id="itemsList">
+      <li>
+        <select name="items[0][itemName]" required>
+          <% inventory.forEach(item => { %>
+            <option value="<%= item.itemName %>"><%= item.itemName %></option>
+          <% }); %>
+        </select>
+        <input type="number" name="items[0][quantity]" placeholder="Quantity" required>
+      </li>
+    </ul>
+    <button type="button" onclick="addItem()">Add Item</button>
+    <button type="submit">Generate Bill</button>
+  </form>
+  <a href="/">Go back</a>
+
+  <script>
+    let itemCounter = 1;
+
+    function addItem() {
+      itemCounter++;
+      const newItem = document.createElement('li');
+      newItem.innerHTML = `
+        <select name="items[${itemCounter}][itemName]" required>
+          <% inventory.forEach(item => { %>
+            <option value="<%= item.itemName %>"><%= item.itemName %></option>
+          <% }); %>
+        </select>
+        <input type="number" name="items[${itemCounter}][quantity]" placeholder="Quantity" required>
+      `;
+      document.getElementById('itemsList').appendChild(newItem);
+    }
