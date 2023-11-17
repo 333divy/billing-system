@@ -8,7 +8,7 @@
   <title>Inventory</title>
 </head>
 <body>
-  <h1>Inventory</h1>
+  <h1>Inventory from <%=server_id%></h1>
   <ul>
     <% inventory.forEach(item => { %>
       <li><%= item.itemName %> - <%= item.price %> - <%= item.quantity %></li>
