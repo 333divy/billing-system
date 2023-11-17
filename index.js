@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Home route
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index',{server_id});
 });
 
 // style.css route
@@ -46,7 +46,7 @@ app.get('/style.css', (req, res) => {
 
 // Vendor route
 app.get('/vendors', (req, res) => {
-  res.render('vendors', { vendors });
+  res.render('vendors', { vendors ,server_id});
 });
 
 app.post('/vendors', (req, res) => {
@@ -57,7 +57,7 @@ app.post('/vendors', (req, res) => {
 
 // Client route
 app.get('/clients', (req, res) => {
-  res.render('clients', { clients });
+  res.render('clients', { clients ,server_id});
 });
 
 app.post('/clients', (req, res) => {
@@ -68,7 +68,7 @@ app.post('/clients', (req, res) => {
 
 // Inventory route
 app.get('/inventory', (req, res) => {
-  res.render('inventory', { inventory });
+  res.render('inventory', { inventory ,server_id});
 });
 
 app.post('/inventory', (req, res) => {
@@ -79,7 +79,7 @@ app.post('/inventory', (req, res) => {
 
 // Bill route
 app.get('/bills', (req, res) => {
-  res.render('bills', { bills, clients, inventory });
+  res.render('bills', { bills, clients, inventory ,server_id});
 });
 
 app.post('/bills', (req, res) => {
