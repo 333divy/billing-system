@@ -8,7 +8,7 @@
   <title>Clients</title>
 </head>
 <body>
-  <h1>Clients</h1>
+  <h1>Clients from <%=server_id%></h1>
   <ul>
     <% clients.forEach(client => { %>
       <li><%= client.name %> - <%= client.address %> - <%= client.contact %></li>
