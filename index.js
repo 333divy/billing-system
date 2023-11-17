@@ -10,7 +10,7 @@ const path = require('path');
 const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
-
+const server_id = Math.floor((Math.random() * 100)* (Math.random() * 100));
 // Sample data storage
 const vendors = [];
 const clients = [];
